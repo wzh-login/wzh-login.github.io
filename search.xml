@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title></title>
-      <link href="2021/04/19/ce-shi/"/>
-      <url>2021/04/19/ce-shi/</url>
+      <title>测试</title>
+      <link href="2021/04/18/ce-shi/"/>
+      <url>2021/04/18/ce-shi/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"欢迎来到"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
       
       
       
@@ -21,7 +21,7 @@
       <link href="2021/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/"/>
       <url>2021/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/</url>
       
-        <content type="html"><![CDATA[<p>我之前安装npm时全是默认安装，模块全部安装在C盘了，今天心血来潮，把路径改到了D盘，结果改完后模块都不能识别了，都提示XX模块不是内部命令，这其实是环境变量配置的问题，我都是按照网上的教程改的环境变量，但是照着改也有错，反复改了好几次都不行，最后终于改好了。步骤如下：<br>1.要在你需要存放模块的文件夹里建两个文件夹我是在node目录下建了两个文件夹分别叫node_global和node_cache。<br>2.修改npm文件夹下的npmrc文件，打开修改里面的内容，原来的内容删掉，写入<br>prefix=D:\node\node_global<br>cache=D:\node\node_cache<br>这个是配置安装模块的路径为步骤一新建的文件夹。然后可以随便找个模块安装一下。模块就会出现在node_global文件夹里面<br>3.当安装完模块后还不能用，因为改变了默认的路径，需要修改系统的环境变量配置去让命令行识别命令，这里分为用户变量和系统变量。先在用户变量里面新建明为PATH的变量，值为D:\node\node_global,这个值是你在步骤一种新建的文件夹的路径。然后在系统变量里面新建一个叫NODE_PATH的变量，值为D:\node\node_global\node_modules，这个值是步骤一中新建的node_global下的node_modules文件夹的路径，以后安装的全局模块就在这里，（这个文件夹是安装完任何一个模块后才会出现，所以配置环境变量前要随便先安装一个模块）<br>4.最后关于cnpm我现在是不想用它了之前用它遇到过安装不成功的，现在换了默认地址安装完它后愣是不能使用，所幸还有其他办法，很简单一句话：npm config set registry <a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 这句话就可以设置npm也是从国内淘宝镜像来下载安装模块了。<br>总结:第三步中为什么要设置用户变量呢？我后来发现这个路径下有一个文件叫XXX.cmd就是你之前安装的模块的名字+cmd，这个cmd文件应该是让用户输入模块名字后能识别的不至于出现XX不是内部命令，我试了一下故意设置错用户的path然后就提示不是内部命令了，那个node_path应该是让node程序自己找模块时识别的。以上全部都是我自己的个人理解，仅供参考，不一定对大家都有用，因为我参考别人的就对我不太管用。</p><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> str<span class="token operator">=</span><span class="token string">"wanghzongheng"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>我之前安装npm时全是默认安装，模块全部安装在C盘了，今天心血来潮，把路径改到了D盘，结果改完后模块都不能识别了，都提示XX模块不是内部命令，这其实是环境变量配置的问题，我都是按照网上的教程改的环境变量，但是照着改也有错，反复改了好几次都不行，最后终于改好了。</p></blockquote><p>步骤如下：</p><h2 id="1-目录创建"><a href="#1-目录创建" class="headerlink" title="1.目录创建"></a>1.目录创建</h2><p>要在你需要存放模块的文件夹里建两个文件夹我是在node目录下建了两个文件夹分别叫node_global和node_cache。</p><h2 id="2-修改路径"><a href="#2-修改路径" class="headerlink" title="2.修改路径"></a>2.修改路径</h2><p>修改npm文件夹下的npmrc文件，打开修改里面的内容，原来的内容删掉，写入<br>prefix=D:\node\node_global<br>cache=D:\node\node_cache<br>这个是配置安装模块的路径为步骤一新建的文件夹。然后可以随便找个模块安装一下。模块就会出现在node_global文件夹里面</p><h2 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h2><p>当安装完模块后还不能用，因为改变了默认的路径，需要修改系统的环境变量配置去让命令行识别命令，这里分为用户变量和系统变量。先在用户变量里面新建明为PATH的变量，值为D:\node\node_global,这个值是你在步骤一种新建的文件夹的路径。然后在系统变量里面新建一个叫NODE_PATH的变量，值为D:\node\node_global\node_modules，这个值是步骤一中新建的node_global下的node_modules文件夹的路径，以后安装的全局模块就在这里，（这个文件夹是安装完任何一个模块后才会出现，所以配置环境变量前要随便先安装一个模块）</p><h2 id="4-更换镜像"><a href="#4-更换镜像" class="headerlink" title="4.更换镜像"></a>4.更换镜像</h2><p>最后关于cnpm我现在是不想用它了之前用它遇到过安装不成功的，现在换了默认地址安装完它后愣是不能使用，所幸还有其他办法，很简单一句话：npm config set registry <a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 这句话就可以设置npm也是从国内淘宝镜像来下载安装模块了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p>第三步中为什么要设置用户变量呢？我后来发现这个路径下有一个文件叫XXX.cmd就是你之前安装的模块的名字+cmd，这个cmd文件应该是让用户输入模块名字后能识别的不至于出现XX不是内部命令，我试了一下故意设置错用户的path然后就提示不是内部命令了，那个node_path应该是让node程序自己找模块时识别的。以上全部都是我自己的个人理解，仅供参考，不一定对大家都有用，因为我参考别人的就对我不太管用。</p>]]></content>
       
       
       
