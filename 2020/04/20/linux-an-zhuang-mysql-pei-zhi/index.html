@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="修改npm安装的全局路径和配置环境变量的坑, HTML,CSS,JavaScript,JQuery,React,Vue.js,JavaSE,JavaEE等">
+    <meta name="keywords" content="linux安装mysql配置, HTML,CSS,JavaScript,JQuery,React,Vue.js,JavaSE,JavaEE等">
     <meta name="description" content="专注于Java,分享知识,分享生活">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>修改npm安装的全局路径和配置环境变量的坑 | July</title>
+    <title>linux安装mysql配置 | July</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/1.jpg?Expires=1618883607&OSSAccessKeyId=TMP.3KeuN2xdKVuJoe8oLEXTyVLN1j5psFU2Qk7Ye5vvx915hm3S5v3afDf2b2WLsh4KqNxFht4j8kKkGzWYd6urfvGcsDSJkN&Signature=uxjmXwXZdIyi0fGhjGPluHMyTcY%3D')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">修改npm安装的全局路径和配置环境变量的坑</h1>
+                    <h1 class="description center-align post-title">linux安装mysql配置</h1>
                 </div>
             </div>
         </div>
@@ -368,8 +368,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/npm/">
-                                <span class="chip bg-color">npm</span>
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
+                            </a>
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -380,8 +384,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                前端
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                运维
                             </a>
                         
                     </div>
@@ -393,7 +397,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-18
+                    2020-04-20
                 </div>
                 
 
@@ -402,14 +406,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    641
+                    210
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -432,16 +436,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>修改了npm包下载默认目录是c盘,将路径改变造成很多包无法使用(报错xxx模块不是内部命令)</p>
+                <h1 id="1-yum安装mysql"><a href="#1-yum安装mysql" class="headerlink" title="1.yum安装mysql"></a>1.yum安装mysql</h1><h3 id="1-1下载mysql的rpm地址"><a href="#1-1下载mysql的rpm地址" class="headerlink" title="1.1下载mysql的rpm地址"></a>1.1下载mysql的rpm地址</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="http://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/">http://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/</a></p>
 </blockquote>
-<p>步骤如下：</p>
-<h2 id="1-目录创建"><a href="#1-目录创建" class="headerlink" title="1.目录创建"></a>1.目录创建</h2><p>要在你需要存放模块的文件夹里建两个文件夹我是在node目录下建了两个文件夹分别叫node_global和node_cache。</p>
-<h2 id="2-修改路径"><a href="#2-修改路径" class="headerlink" title="2.修改路径"></a>2.修改路径</h2><p>修改npm文件夹下的npmrc文件，打开修改里面的内容，原来的内容删掉，写入<br>prefix=D:\node\node_global<br>cache=D:\node\node_cache<br>这个是配置安装模块的路径为步骤一新建的文件夹。然后可以随便找个模块安装一下。模块就会出现在node_global文件夹里面</p>
-<h2 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3.配置环境变量"></a>3.配置环境变量</h2><p>当安装完模块后还不能用，因为改变了默认的路径，需要修改系统的环境变量配置去让命令行识别命令，这里分为用户变量和系统变量。先在用户变量里面新建明为PATH的变量，值为D:\node\node_global,这个值是你在步骤一种新建的文件夹的路径。然后在系统变量里面新建一个叫NODE_PATH的变量，值为D:\node\node_global\node_modules，这个值是步骤一中新建的node_global下的node_modules文件夹的路径，以后安装的全局模块就在这里，（这个文件夹是安装完任何一个模块后才会出现，所以配置环境变量前要随便先安装一个模块）</p>
-<h2 id="4-更换镜像"><a href="#4-更换镜像" class="headerlink" title="4.更换镜像"></a>4.更换镜像</h2><p>最后关于cnpm我现在是不想用它了之前用它遇到过安装不成功的，现在换了默认地址安装完它后愣是不能使用，所幸还有其他办法，很简单一句话：npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 这句话就可以设置npm也是从国内淘宝镜像来下载安装模块了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p>第三步中为什么要设置用户变量呢？我后来发现这个路径下有一个文件叫XXX.cmd就是你之前安装的模块的名字+cmd，这个cmd文件应该是让用户输入模块名字后能识别的不至于出现XX不是内部命令，我试了一下故意设置错用户的path然后就提示不是内部命令了，那个node_path应该是让node程序自己找模块时识别的。以上全部都是我自己的个人理解，仅供参考，不一定对大家都有用，因为我参考别人的就对我不太管用。</p>
-
+<h3 id="1-2-配置mysql扩展源"><a href="#1-2-配置mysql扩展源" class="headerlink" title="1.2 配置mysql扩展源"></a>1.2 配置mysql扩展源</h3><blockquote>
+<p>rpm -ivh  <a target="_blank" rel="noopener" href="http://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql57-community-release-el7-10.noarch.rpm">http://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql57-community-release-el7-10.noarch.rpm</a></p>
+</blockquote>
+<h3 id="1-3-yum安装mysql"><a href="#1-3-yum安装mysql" class="headerlink" title="1-3    yum安装mysql"></a>1-3    yum安装mysql</h3><blockquote>
+<p>yum install mysql-community-server -y</p>
+</blockquote>
+<h3 id="1-4-启动mysql-并加入开机自启"><a href="#1-4-启动mysql-并加入开机自启" class="headerlink" title="1-4 启动mysql,并加入开机自启"></a>1-4 启动mysql,并加入开机自启</h3><blockquote>
+<p>systemctl start mysqld</p>
+<p>systemctl stop mysqld</p>
+<p>systemctl emable mysqld</p>
+</blockquote>
+<h3 id="1-5-使用mysql初始密码登录数据库"><a href="#1-5-使用mysql初始密码登录数据库" class="headerlink" title="1-5 使用mysql初始密码登录数据库"></a>1-5 使用mysql初始密码登录数据库</h3><blockquote>
+<p>grep “password” /var/log/mysqld.log    #查看初始化密码登录</p>
+<p>mysql -uroot -p</p>
+<p>或者一步到位进入mysql</p>
+<p>mysql -uroot -p$(awk ‘/temporary password/(print $NF)’ /var/log/mysqld.log)</p>
+</blockquote>
+<h3 id="1-6-密码降级"><a href="#1-6-密码降级" class="headerlink" title="1-6    密码降级"></a>1-6    密码降级</h3><blockquote>
+<p>set global validate_password_policy=0;  #给密码降级(只数字或者字母就可以)</p>
+<p>set password for root@localgost = password(‘密码’);  #修改密码  </p>
+</blockquote>
+<h3 id="1-7-授权所有用户连接"><a href="#1-7-授权所有用户连接" class="headerlink" title="1-7    授权所有用户连接"></a>1-7    授权所有用户连接</h3><blockquote>
+<p>grant all on <em>.</em> to root@’%’ identified by ‘数据库密码’;</p>
+<p>flush privileges;    #刷新</p>
+</blockquote>
+<h3 id="接下来就可以进行连接了…"><a href="#接下来就可以进行连接了…" class="headerlink" title="接下来就可以进行连接了…"></a>接下来就可以进行连接了…</h3>
                 
             </div>
             <hr/>
@@ -467,7 +490,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wzh-login.github.io/2021/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/">https://wzh-login.github.io/2021/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/</a>
+                    <a href="https://wzh-login.github.io/2020/04/20/linux-an-zhuang-mysql-pei-zhi/">https://wzh-login.github.io/2020/04/20/linux-an-zhuang-mysql-pei-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -505,8 +528,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/npm/">
-                                    <span class="chip bg-color">npm</span>
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -552,10 +579,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/">
                     <div class="card-image">
@@ -573,9 +599,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -588,7 +614,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -607,12 +632,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/20/linux-an-zhuang-mysql-pei-zhi/">
+                <a href="/2020/03/18/docker/">
                     <div class="card-image">
                         
-                        <img src="https://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/1.jpg?Expires=1618883607&OSSAccessKeyId=TMP.3KeuN2xdKVuJoe8oLEXTyVLN1j5psFU2Qk7Ye5vvx915hm3S5v3afDf2b2WLsh4KqNxFht4j8kKkGzWYd6urfvGcsDSJkN&Signature=uxjmXwXZdIyi0fGhjGPluHMyTcY%3D" class="responsive-img" alt="linux安装mysql配置">
+                        <img src="https://gulimall-zss.oss-cn-qingdao.aliyuncs.com/%E8%87%AA%E8%A1%8C%E8%BD%A6.jpg" class="responsive-img" alt="docker">
                         
-                        <span class="card-title">linux安装mysql配置</span>
+                        <span class="card-title">docker</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -623,7 +648,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-18
                             </span>
                         <span class="publish-author">
                             
@@ -640,12 +665,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
