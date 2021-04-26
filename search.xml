@@ -106,6 +106,33 @@
     </entry>
     
     
+    
+    <entry>
+      <title>离线安装使用Docker</title>
+      <link href="2020/02/20/chi-xian-an-zhuang-shi-yong-docker/"/>
+      <url>2020/02/20/chi-xian-an-zhuang-shi-yong-docker/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-下载镜像上传到服务器"><a href="#1-下载镜像上传到服务器" class="headerlink" title="1.下载镜像上传到服务器"></a>1.下载镜像上传到服务器</h2><blockquote><p>镜像站</p><p><a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/</a><br><a href="https://download.docker.com/linux/centos/8/x86_64/stable/Packages/">https://download.docker.com/linux/centos/8/x86_64/stable/Packages/</a></p></blockquote><h4 id="主要的三个包"><a href="#主要的三个包" class="headerlink" title="主要的三个包"></a>主要的三个包</h4><p>containerd.io 与操作系统API(在本例中是LXC - Linux Containers)进行接口，本质上将Docker与操作系统解耦，还为非Docker容器管理器提供了容器服务</p><p>Docker -ce - Docker守护进程，这是做所有管理工作的一部分，在Linux上需要另外两个</p><p>Docker -ce- cli- CLI工具来控制这个守护进程，如果你想控制一个远程的Docker守护进程，你可以自己安装它们</p><p>docker-compose  ompose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p><h2 id="2-安装rpm包"><a href="#2-安装rpm包" class="headerlink" title="2.安装rpm包"></a>2.安装rpm包</h2><p>2.1将docker的rpm包进行yum install 文件名命令进行安装依次顺序:ce ce-cli io</p><p>2.2.将docker-compose-Linux-x86_64设置为可执行文件(chmod +x docker-compose-Linux-x86_64),在将docker-compose-Linux-x86_64 拷贝到linxu目录(cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose)</p><h2 id="3-load-tar包为镜像执行compose命令"><a href="#3-load-tar包为镜像执行compose命令" class="headerlink" title="3.load tar包为镜像执行compose命令"></a>3.load tar包为镜像执行compose命令</h2><p>3.1 将tar包load成镜像 docker load -i eoms-state-grid.tar  或者 docker import centos_container.tar centos:latest</p><p>3.2  docker save -o 要保存的文件名  要保存的镜像名字</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>

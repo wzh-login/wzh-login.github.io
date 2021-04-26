@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="docker部署项目">
+    <meta name="keywords" content="离线安装使用Docker, HTML,CSS,JavaScript,JQuery,React,Vue.js,JavaSE,JavaEE等">
     <meta name="description" content="专注于Java,分享知识,分享生活">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>docker | July</title>
+    <title>离线安装使用Docker | July</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -387,12 +387,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gulimall-zss.oss-cn-qingdao.aliyuncs.com/%E8%87%AA%E8%A1%8C%E8%BD%A6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">docker</h1>
+                    <h1 class="description center-align post-title">离线安装使用Docker</h1>
                 </div>
             </div>
         </div>
@@ -512,6 +512,10 @@
                                 <span class="chip bg-color">docker</span>
                             </a>
                         
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -533,7 +537,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-18
+                    2020-02-20
                 </div>
                 
 
@@ -542,14 +546,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    356
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    1 分
                 </div>
                 
 
@@ -572,367 +576,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>从docker基础到docker-compose容器编排通俗易懂~</p>
+                <h2 id="1-下载镜像上传到服务器"><a href="#1-下载镜像上传到服务器" class="headerlink" title="1.下载镜像上传到服务器"></a>1.下载镜像上传到服务器</h2><blockquote>
+<p>镜像站</p>
+<p><a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/</a><br><a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/8/x86_64/stable/Packages/">https://download.docker.com/linux/centos/8/x86_64/stable/Packages/</a></p>
 </blockquote>
-<h1 id="Docker笔记"><a href="#Docker笔记" class="headerlink" title="Docker笔记"></a>Docker笔记</h1><h3 id="Docker能干什么"><a href="#Docker能干什么" class="headerlink" title="Docker能干什么?"></a>Docker能干什么?</h3><p>传统虚拟机方式</p>
-<ol>
-<li>资源占用多</li>
-<li>冗余步骤多</li>
-<li>启动慢!</li>
-</ol>
-<p>容器化技术</p>
-<ol>
-<li>传统虚拟机,虚拟出一条硬件,运行完整的操作系统,然后在这个系统上安装和运行软件</li>
-<li>容器内的应用直接运行在宿主机的内容,容器是木有自己的内核的,也没有虚拟我们的硬件,所以就轻便了</li>
-<li>买个容器间是相互隔离的.每个容器内部都有一个属于自己的文件系统,互不影响</li>
-</ol>
-<h5 id="DevOps-开发-运维"><a href="#DevOps-开发-运维" class="headerlink" title="DevOps(开发,运维)"></a>DevOps(开发,运维)</h5><p>应用更快速的交付和部署</p>
-<ul>
-<li>docker打包镜像发布测试,一键运行</li>
-</ul>
-<p>更便捷的升级和扩展</p>
-<ul>
-<li>项目直接打成一个镜像,扩展服务器A!服务器B</li>
-</ul>
-<p>更简单的系统运维</p>
-<ul>
-<li>在容器化之后,我们的开发,测试环境都是高度一致的</li>
-</ul>
-<p>更高效的计算机资源利用</p>
-<ul>
-<li>Docker是内核级别的虚拟化,可以在一个物理机上运行很多的容器实例!服务器的性能可以被压榨到极致.</li>
-</ul>
-<h5 id="Docker的基本组成-名词概念"><a href="#Docker的基本组成-名词概念" class="headerlink" title="Docker的基本组成(名词概念)"></a>Docker的基本组成(名词概念)</h5><p><img src="/2020/03/18/docker/image-20210312103435841.png" alt="image-20210312103435841"></p>
-<p>镜像(image)</p>
-<ul>
-<li>docker镜像就好比是一个模板，可以通过这个模板来创建容器服务，tomcat镜像===&gt;run ==&gt; tomcat01容器(提供服务器），通过这个镜像可以创建多个容器（最终服务运行或者项目运行就是在容器中的)。</li>
-</ul>
-<p>容器(container)</p>
-<ul>
-<li>Docker利用容器技术，独立运行一个或者一个组应用，通过镜像来创建的。启动，停止，删除，基本命令!</li>
-</ul>
-<p>仓库(repository)</p>
-<ul>
-<li>阿里云…..都有容器服务器（配置镜像加速!)</li>
-</ul>
-<h5 id="Run的流程和Docker原理"><a href="#Run的流程和Docker原理" class="headerlink" title="Run的流程和Docker原理"></a>Run的流程和Docker原理</h5><p><img src="/2020/03/18/docker/image-20210312103423885.png" alt="image-20210312103423885"></p>
-<p>底层原理</p>
-<p>Docker是什么工作的?</p>
-<ul>
-<li> Docker是一个 Client - Server结构的系统，Docker的守护进程运行在主机上。通过Socket从客户端访问!DockerServer接收到Docker-Client的指令，就会执行这个命令!</li>
-</ul>
-<p><img src="/2020/03/18/docker/image-20210312103407454.png" alt="image-20210312103407454"></p>
-<p>Docker为什么比VM快?</p>
-<ol>
-<li>Docker有着比虚拟机更少的抽象层</li>
-<li>Docekr利用的是宿主机的内核,vm需要的是Cuest OS</li>
-</ol>
-<p>所以说，新建一个容器的时候，docker不需要想虚拟机一样重新加载一个操作系统内核，避免引导。虚拟机是加载Guest OS,分钟级别的，而docker是利用宿主机的操作系统吗，省略了这个复杂的过程，秒级!</p>
-<h3 id="Docker安装卸载"><a href="#Docker安装卸载" class="headerlink" title="Docker安装卸载"></a>Docker安装卸载</h3><h6 id="1-卸载"><a href="#1-卸载" class="headerlink" title="1.卸载"></a>1.卸载</h6><pre class="line-numbers language-none"><code class="language-none">systemctl stop docker
-
-yum -y remove docker-ce docker-ce-cli containerd.io
-
-rm -rf &#x2F;var&#x2F;lib&#x2F;docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h6 id="2-yum安装gcc相关环境-需要确保虚拟机可以上网"><a href="#2-yum安装gcc相关环境-需要确保虚拟机可以上网" class="headerlink" title="2.yum安装gcc相关环境(需要确保虚拟机可以上网)"></a>2.yum安装gcc相关环境(需要确保虚拟机可以上网)</h6><pre class="line-numbers language-none"><code class="language-none">yum -y install gcc
-yum -y install gcc-c++<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h6 id="3-卸载旧版本"><a href="#3-卸载旧版本" class="headerlink" title="3.卸载旧版本"></a>3.卸载旧版本</h6><pre class="line-numbers language-none"><code class="language-none">sudo yum remove docker \
-                 docker-client \
-                 docker-client-latest \
-                 docker-common \
-                 docker-latest \
-                 docker-latest-logrotate \
-                 docker-logrotate \
-                 docker-engine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h6 id="4-安装需要的软件包"><a href="#4-安装需要的软件包" class="headerlink" title="4,安装需要的软件包"></a>4,安装需要的软件包</h6><pre class="line-numbers language-none"><code class="language-none">yum install -y yum-utils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h6 id="5-设置镜像仓库"><a href="#5-设置镜像仓库" class="headerlink" title="5.设置镜像仓库"></a>5.设置镜像仓库</h6><pre class="line-numbers language-none"><code class="language-none">yum-config-manager --add-repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果不好使就用这个</p>
-<pre class="line-numbers language-none"><code class="language-none">wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;docker-ce.repo https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo
-yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h6 id="6-更新yum包索引"><a href="#6-更新yum包索引" class="headerlink" title="6.更新yum包索引"></a>6.更新yum包索引</h6><pre class="line-numbers language-none"><code class="language-none">yum makecache fast<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h6 id="7-安装Docker-CE"><a href="#7-安装Docker-CE" class="headerlink" title="7.安装Docker CE"></a>7.安装Docker CE</h6><pre class="line-numbers language-none"><code class="language-none">yum install docker-ce docker-ce-cli containerd.io<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h6 id="8-启动Docker测试"><a href="#8-启动Docker测试" class="headerlink" title="8.启动Docker测试"></a>8.启动Docker测试</h6><pre class="line-numbers language-none"><code class="language-none">systemctl start docker
-docker version
-docker run hell-world<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>报错正在尝试其他镜像</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">&gt;yum clean all
-&gt;rpm --rebuilddb
-&gt;地址:https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_34872748&#x2F;article&#x2F;details&#x2F;86571130<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h3 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h3><blockquote>
-<p>docker rm -f $(docker ps -a -q)   </p>
-<p>docker rm -f $(docker images -qa)</p>
-</blockquote>
-<p><img src="/2020/03/18/docker/image-20210315135716768.png" alt="image-20210315135716768"></p>
-<p><img src="/2020/03/18/docker/image-20210312111712735.png" alt="image-20210312111712735"></p>
-<h6 id="mysql挂载命令"><a href="#mysql挂载命令" class="headerlink" title="mysql挂载命令"></a>mysql挂载命令</h6><pre class="line-numbers language-none"><code class="language-none">docker run -p 3737:3306 -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql&#x2F;database:&#x2F;var&#x2F;lib&#x2F;mysql -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql:&#x2F;docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD&#x3D;root  --name mysql_guli mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>帮助命令</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker">docker version 	    #显示Docker的版本信息
-docker info    	    #显示docker的系统信息,包括和容器,镜像的数量
-docker 命令 --help   #帮助命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h6 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h6><p>docker images #查看所有本地的主机上的镜像</p>
-<p><img src="/2020/03/18/docker/image-20210312105359238.png" alt="image-20210312105359238"></p>
-<p>docker search 搜索镜像</p>
-<p>docker pull 下载镜像:版本</p>
-<p><img src="/2020/03/18/docker/image-20210312111154086.png" alt="image-20210312111154086"></p>
-<p>docker rmi -f  删除镜像</p>
-<p><img src="/2020/03/18/docker/image-20210312111328425.png" alt="image-20210312111328425"></p>
-<h6 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h6><p><img src="/2020/03/18/docker/image-20210312112249189.png" alt="image-20210312112249189"></p>
-<p><img src="/2020/03/18/docker/image-20210312113644044.png" alt="image-20210312113644044"></p>
-<h6 id="常用其他命令"><a href="#常用其他命令" class="headerlink" title="常用其他命令"></a>常用其他命令</h6><p><img src="/2020/03/18/docker/image-20210312152822212.png" alt="image-20210312152822212"></p>
-<p><img src="/2020/03/18/docker/image-20210312154026775.png" alt="image-20210312154026775"></p>
-<p><img src="/2020/03/18/docker/image-20210312154212471.png" alt="image-20210312154212471"></p>
-<h3 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h3><p><img src="/2020/03/18/docker/image-20210312160018942.png" alt="image-20210312160018942"></p>
-<h3 id="Docker镜像讲解"><a href="#Docker镜像讲解" class="headerlink" title="Docker镜像讲解"></a>Docker镜像讲解</h3><p><img src="/2020/03/18/docker/image-20210312160430588.png" alt="image-20210312160430588"></p>
-<p><img src="/2020/03/18/docker/image-20210312160526200.png" alt="image-20210312160526200"></p>
-<p>下载时一层一层的就是这个镜像加载原理</p>
-<p><img src="/2020/03/18/docker/image-20210312160645632.png" alt="image-20210312160645632"></p>
-<h6 id="镜像分层"><a href="#镜像分层" class="headerlink" title="镜像分层"></a>镜像分层</h6><p><img src="/2020/03/18/docker/image-20210312162220697.png" alt="image-20210312162220697"></p>
-<h6 id="如何提交一个自己的镜像commit镜像"><a href="#如何提交一个自己的镜像commit镜像" class="headerlink" title="如何提交一个自己的镜像commit镜像"></a>如何提交一个自己的镜像commit镜像</h6><p><img src="/2020/03/18/docker/image-20210312163212571.png" alt="image-20210312163212571"></p>
-<h3 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h3><p><img src="/2020/03/18/docker/image-20210312171402379.png" alt="image-20210312171402379"></p>
-<p><img src="/2020/03/18/docker/image-20210312171447997.png" alt="image-20210312171447997"></p>
-<p><img src="/2020/03/18/docker/image-20210312171506067.png" alt="image-20210312171506067"></p>
-<p><img src="/2020/03/18/docker/image-20210312174930409.png" alt="image-20210312174930409"><img src="/2020/03/18/docker/image-20210313090827893.png" alt="image-20210313090827893"></p>
-<h6 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h6><p><img src="/2020/03/18/docker/image-20210313090812162.png" alt="image-20210313090812162"></p>
-<pre class="line-numbers language-dokcer" data-language="dokcer"><code class="language-dokcer">docker run -p 3306:3306 --name mysql \
--v &#x2F;mydata&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql \
--v &#x2F;mydata&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \
--v &#x2F;mydata&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql \
--e MYSQL_ROOT_PASSWORD&#x3D;root \
--d mysql:5.7
-
-其中-p 3306:3306 为端口映射， 把容器中的3306映射到宿主机的3306端口中
---name mysql 为给容器起个名叫做 mysql
-&#x2F;var&#x2F;log&#x2F;mysql  和 &#x2F;etc&#x2F;mysql 为mysql 容器内的日志和配置目录 
-&#x2F;var&#x2F;lib&#x2F;mysql 为容器内mysql的数据。
-如下的三条命令， 分别为进行宿主机的挂载 。 
--v &#x2F;mydata&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql \
--v &#x2F;mydata&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \
--v &#x2F;mydata&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql \
--e MYSQL_ROOT_PASSWORD&#x3D;root 为给root用户的密码为root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h6 id="具名挂载匿名挂载指定路径挂载"><a href="#具名挂载匿名挂载指定路径挂载" class="headerlink" title="具名挂载匿名挂载指定路径挂载"></a>具名挂载匿名挂载指定路径挂载</h6><p><img src="/2020/03/18/docker/image-20210313092737224.png" alt="image-20210313092737224"></p>
-<h6 id="初识DockerFile"><a href="#初识DockerFile" class="headerlink" title="初识DockerFile"></a>初识DockerFile</h6><p>dockerfile 就是来构件docekr镜像的构件文件!命令脚本!先体验一下!</p>
-<p>通过这个脚本可以生成镜像,镜像是一层一层的,脚本一个个的命令,每个命令都是一层!</p>
-<p><img src="/2020/03/18/docker/image-20210313095515210.png" alt="image-20210313095515210"></p>
-<p><img src="/2020/03/18/docker/image-20210313100122880.png" alt="image-20210313100122880"></p>
-<p><img src="/2020/03/18/docker/image-20210313100135788.png" alt="image-20210313100135788"></p>
-<p><img src="/2020/03/18/docker/image-20210313100457699.png" alt="image-20210313100457699"></p>
-<h6 id="数据卷容器同步数据"><a href="#数据卷容器同步数据" class="headerlink" title="数据卷容器同步数据"></a>数据卷容器同步数据</h6><p><img src="/2020/03/18/docker/image-20210313143854561.png" alt="image-20210313143854561"></p>
-<h3 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h3><h5 id="DockerFile介绍"><a href="#DockerFile介绍" class="headerlink" title="DockerFile介绍"></a>DockerFile介绍</h5><p><img src="/2020/03/18/docker/image-20210313144618044.png" alt="image-20210313144618044"></p>
-<h5 id="DockerFile构件过程"><a href="#DockerFile构件过程" class="headerlink" title="DockerFile构件过程"></a>DockerFile构件过程</h5><p><img src="/2020/03/18/docker/image-20210313144930670.png" alt="image-20210313144930670"></p>
-<p><img src="/2020/03/18/docker/image-20210313145203744.png" alt="image-20210313145203744"></p>
-<h5 id="DockerFile指令说明"><a href="#DockerFile指令说明" class="headerlink" title="DockerFile指令说明"></a>DockerFile指令说明</h5><p><img src="/2020/03/18/docker/image-20210313145802474.png" alt="image-20210313145802474"></p>
-<p><img src="/2020/03/18/docker/image-20210313145808111.png" alt="image-20210313145808111"></p>
-<h6 id="创建一个自己的centos"><a href="#创建一个自己的centos" class="headerlink" title="创建一个自己的centos"></a>创建一个自己的centos</h6><pre class="line-numbers language-none"><code class="language-none">#1.编写Dockerfile的文件
-[root@aubin dockerfile]# vim mydockerfile 
-[root@aubin dockerfile]# cat mydockerfile 
-FROM centos
-MAINTAINER wangzhongheng&lt;2218288230@qq.com&gt;
-
-ENV MYPATH &#x2F;usr&#x2F;local
-WORKDIR $MYPATH
-
-RUN yum -y install vim
-RUN yum -y install net-tools
-
-EXPOSE 80
-
-CMD ECHO $MYPATH
-CMD ECHO &quot;------end----&quot;
-CMD &#x2F;bin&#x2F;bash
-
-#2.通过这个文件构件镜像
-#命令: docker build -f mydockerfile -t mycentos:0.1 .
-#构件成功
-Successfully built b2b283491cf2
-Successfully tagged mycentos:0.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>测试运行</p>
-<p><img src="/2020/03/18/docker/image-20210313153902011.png" alt="image-20210313153902011"></p>
-<h6 id="可以查看镜像更改历史-history"><a href="#可以查看镜像更改历史-history" class="headerlink" title="可以查看镜像更改历史(history)"></a>可以查看镜像更改历史(history)</h6><p><img src="/2020/03/18/docker/image-20210313153954220.png" alt="image-20210313153954220"></p>
-<h6 id="CMD和ENTRYPOINT区别"><a href="#CMD和ENTRYPOINT区别" class="headerlink" title="CMD和ENTRYPOINT区别"></a>CMD和ENTRYPOINT区别</h6><p><img src="/2020/03/18/docker/image-20210313154805906.png" alt="image-20210313154805906"></p>
-<p><img src="/2020/03/18/docker/image-20210313155141665.png" alt="image-20210313155141665"></p>
-<p><img src="/2020/03/18/docker/image-20210313155226323.png" alt="image-20210313155226323"></p>
-<p>总结:如果可以追加命令在后面就是ENTPYPOINT实现的镜像</p>
-<h6 id="DockerFile实现制作Tomcat镜像"><a href="#DockerFile实现制作Tomcat镜像" class="headerlink" title="DockerFile实现制作Tomcat镜像"></a>DockerFile实现制作Tomcat镜像</h6><p>1.准备压缩包</p>
-<p><img src="/2020/03/18/docker/image-20210313161936250.png" alt="image-20210313161936250"></p>
-<p>2.编写Dockerfile文件,官方命名’Dockerfile’,build会自动寻找这个文件,就不需要-f指定了!</p>
-<pre class="line-numbers language-none"><code class="language-none">FROM centos
-MAINTAINER wangzhongheng&lt;2218288230@qq.com&gt;
-
-COPY readme.txt &#x2F;usr&#x2F;local&#x2F;readme.txt
-
-ADD jdk-8u221-linux-x64.tar.gz
-ADD apache-tomcat-9.0.44.tar.gz
-
-RUN yum -y install vim
-
-ENV MYPATH &#x2F;usr&#x2F;local
-WORKDIR $MYPATH
-
-ENV JAVA_HOME &#x2F;usr&#x2F;local&#x2F;jdk1.8.0.11
-ENV CLASSPATH $JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar
-ENV CATALINA_HOME &#x2F;usr&#x2F;local&#x2F;apache-tomcat-9.0.44
-ENV CATALINA_BASH &#x2F;usr&#x2F;local&#x2F;apache-tomcat-9.0.44
-ENV PATH $PATH:$JAVA_HOME&#x2F;bin:$CATALINA_HOME&#x2F;lib:$CATALINA_HOME&#x2F;bin
-
-EXPOSE 8080
-
-CMD &#x2F;usr&#x2F;local&#x2F;apache-tomcat-9.0.44&#x2F;bin&#x2F;startup.sh &amp;&amp; tail -F &#x2F;url&#x2F;local&#x2F;apache-tomcat-9.0.44&#x2F;bin&#x2F;logs&#x2F;catalina.out
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>3.构件命令</p>
-<pre class="line-numbers language-none"><code class="language-none">docker build -t diytomcat .<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>4.启动挂载日志和项目到本地</p>
-<pre class="line-numbers language-none"><code class="language-none">docker run -d -p 9090:8080 --name wangzhonghengtomcat -v&#x2F;home&#x2F;wangzhongheng&#x2F;build&#x2F;tomcat&#x2F;test:&#x2F;usr&#x2F;local&#x2F;apache-tomcat-9.0.44&#x2F;webapps&#x2F;test -v &#x2F;home&#x2F;wangzhongheng&#x2F;build&#x2F;tomcat&#x2F;tomcatlogs&#x2F;:&#x2F;usr&#x2F;local&#x2F;apache-tomcat-9.0.44&#x2F;logs diytomcat<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>5.访问测试</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="/2020/03/18/docker/image-20210315141535584.png" alt="image-20210315141535584"></p>
-<p><img src="/2020/03/18/docker/image-20210315101842969.png" alt="image-20210315101842969"></p>
-<h3 id="springboot发布镜像测试"><a href="#springboot发布镜像测试" class="headerlink" title="springboot发布镜像测试"></a>springboot发布镜像测试</h3><p><img src="/2020/03/18/docker/image-20210315113720221.png" alt="image-20210315113720221"></p>
-<p>dockerfile</p>
-<pre class="line-numbers language-none"><code class="language-none">FROM java:8
-
-COPY *.jar &#x2F;app.jar
-
-CMD [&quot;--server.port&#x3D;8081&quot;]
-
-EXPOSE 8081
-
-ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;&#x2F;app.jar&quot;]
-
-#构建docker build -t wzh666 .
-#运行 docker run -d -p 8081:8080 --name wzh-boot-web  wzh666 .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="DockerFile网络"><a href="#DockerFile网络" class="headerlink" title="DockerFile网络"></a>DockerFile网络</h3><h3 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h3><h4 id="Docker-Compose介绍"><a href="#Docker-Compose介绍" class="headerlink" title="Docker Compose介绍"></a>Docker Compose介绍</h4><p><img src="/2020/03/18/docker/image-20210315142131364.png" alt="image-20210315142131364"></p>
-<p><img src="/2020/03/18/docker/image-20210315142531048.png" alt="image-20210315142531048"></p>
-<blockquote>
-<p>个人理解</p>
-</blockquote>
-<p><img src="/2020/03/18/docker/image-20210315143215966.png" alt="image-20210315143215966"></p>
-<h4 id="Docker-Compose安装"><a href="#Docker-Compose安装" class="headerlink" title="Docker Compose安装"></a>Docker Compose安装</h4><p>1.下载</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo curl -L &quot;https:&#x2F;&#x2F;github.com&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;download&#x2F;1.28.5&#x2F;docker-compose-$(uname -s)-$(uname -m)&quot; -o &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose
-
-#国内
-curl -L https:&#x2F;&#x2F;get.daocloud.io&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;download&#x2F;1.24.0&#x2F;docker-compose-&#96;uname -s&#96;-&#96;uname -m&#96; &gt; &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>2.授权</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>3.测试</p>
-<pre class="line-numbers language-none"><code class="language-none">docker-compose --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>4.删除</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h4 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h4><blockquote>
-<p>官网体验:<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/gettingstarted/">https://docs.docker.com/compose/gettingstarted/</a></p>
-</blockquote>
-<p><img src="/2020/03/18/docker/image-20210315150149492.png" alt="image-20210315150149492"></p>
-<p><img src="/2020/03/18/docker/image-20210315160431941.png" alt="image-20210315160431941"></p>
-<p><img src="/2020/03/18/docker/image-20210315161413840.png" alt="image-20210315161413840"></p>
-<p>小结</p>
-<p><img src="/2020/03/18/docker/image-20210315161703725.png" alt="image-20210315161703725"></p>
-<h4 id="yuml编写"><a href="#yuml编写" class="headerlink" title="yuml编写"></a>yuml编写</h4><blockquote>
-<p>官网地址:<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/compose-file-v3/">https://docs.docker.com/compose/compose-file/compose-file-v3/</a></p>
-</blockquote>
-<p>yuml分为三层</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">&gt;version: &quot;3.9&quot;  #版本
-&gt;services:		#服务
- 服务01:web		
-   build: .&#x2F;dir	#服务配置
-   images
- 服务2:redis
- 	....
- 
-&gt;#其他配置  网络&#x2F;卷,全局规则
-&gt;networks:
-&gt;volumes:
-&gt;configs:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-</blockquote>
-<p><img src="/2020/03/18/docker/image-20210315162905221.png" alt="image-20210315162905221"></p>
-<h3 id="部署练习"><a href="#部署练习" class="headerlink" title="部署练习"></a>部署练习</h3><h6 id="springboot-mysql的docker-compose文件"><a href="#springboot-mysql的docker-compose文件" class="headerlink" title="springboot+mysql的docker-compose文件"></a>springboot+mysql的docker-compose文件</h6><pre class="line-numbers language-none"><code class="language-none">version: &quot;2.3&quot;
-services:
-  mysql:
-    restart: always
-    image: mysql:8.0.15
-    container_name: mysql
-    security_opt:
-      - seccomp:unconfined
-    ports:
-      - 3306:3306
-    command: [
-        &#39;--default-authentication-plugin&#x3D;mysql_native_password&#39;,
-        #以下两项已在配置文件中设置
-        #&#39;--character-set-server&#x3D;utf8mb4&#39;,
-        #&#39;--collation-server&#x3D;utf8mb4_unicode_ci&#39;
-    ]
-    environment:
-      - &quot;TZ&#x3D;Asia&#x2F;Shanghai&quot;
-      - &quot;MYSQL_ROOT_HOST&#x3D;%&quot; #远程访问 MYSQL_ROOT_HOST: &#39;%&#39;
-      - &quot;MYSQL_ROOT_PASSWORD&#x3D;root&quot;
-      - &quot;MYSQL_DATABASE&#x3D;boot2020&quot;
-    volumes:
-      - .&#x2F;resources&#x2F;mysql&#x2F;database:&#x2F;var&#x2F;lib&#x2F;mysql
-      - .&#x2F;resources&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf
-      #数据库还原目录 可将需要还原的sql文件放在这里
-      - .&#x2F;resources&#x2F;mysql:&#x2F;docker-entrypoint-initdb.d
-    user: root
-  sept:
-    build: .
-    image: webapp
-    ports:
-      - &quot;8080:8080&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="springboot-mysql的dockerfile文件"><a href="#springboot-mysql的dockerfile文件" class="headerlink" title="springboot+mysql的dockerfile文件"></a>springboot+mysql的dockerfile文件</h5><pre class="line-numbers language-none"><code class="language-none">FROM anapsix&#x2F;alpine-java:8_server-jre_unlimited
-
-MAINTAINER wangzhongheng&lt;yaoqi@163.com&gt;
-
-ADD *.jar app.jar
-
-CMD [&quot;--server.port&#x3D;8080&quot;]
-
-EXPOSE 8080
-
-ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h3><h4 id="区分网卡-这里是阿里云服务器"><a href="#区分网卡-这里是阿里云服务器" class="headerlink" title="区分网卡(这里是阿里云服务器)"></a>区分网卡(这里是阿里云服务器)</h4><p><img src="/2020/03/18/docker/image-20210318170031883.png" alt="image-20210318170031883"></p>
-<blockquote>
-<p>lo:本机网卡</p>
-<p>eth0:阿里云网卡</p>
-<p>docker0网卡</p>
-</blockquote>
-<p>–link容器互通 :</p>
-<h3 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h3><h6 id="清理Docker占用的磁盘空间，迁移-var-lib-docker-目录"><a href="#清理Docker占用的磁盘空间，迁移-var-lib-docker-目录" class="headerlink" title="清理Docker占用的磁盘空间，迁移 /var/lib/docker 目录"></a>清理Docker占用的磁盘空间，迁移 /var/lib/docker 目录</h6><blockquote>
-<p><strong>docker system prune</strong> -a命令可以用于清理磁盘，删除关闭的容器、无用的数据卷和网络，以及dangling镜像(即无tag的镜像)。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_32820767/article/details/81196250">https://blog.csdn.net/weixin_32820767/article/details/81196250</a></p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p><img src="/2020/03/18/docker/image-20210419151129044.png" alt="image-20210419151129044"></p>
+<h4 id="主要的三个包"><a href="#主要的三个包" class="headerlink" title="主要的三个包"></a>主要的三个包</h4><p>containerd.io 与操作系统API(在本例中是LXC - Linux Containers)进行接口，本质上将Docker与操作系统解耦，还为非Docker容器管理器提供了容器服务</p>
+<p>Docker -ce - Docker守护进程，这是做所有管理工作的一部分，在Linux上需要另外两个</p>
+<p>Docker -ce- cli- CLI工具来控制这个守护进程，如果你想控制一个远程的Docker守护进程，你可以自己安装它们</p>
+<p>docker-compose  ompose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p>
+<h2 id="2-安装rpm包"><a href="#2-安装rpm包" class="headerlink" title="2.安装rpm包"></a>2.安装rpm包</h2><p>2.1将docker的rpm包进行yum install 文件名命令进行安装依次顺序:ce ce-cli io</p>
+<p>2.2.将docker-compose-Linux-x86_64设置为可执行文件(chmod +x docker-compose-Linux-x86_64),在将docker-compose-Linux-x86_64 拷贝到linxu目录(cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose)</p>
+<h2 id="3-load-tar包为镜像执行compose命令"><a href="#3-load-tar包为镜像执行compose命令" class="headerlink" title="3.load tar包为镜像执行compose命令"></a>3.load tar包为镜像执行compose命令</h2><p>3.1 将tar包load成镜像 docker load -i eoms-state-grid.tar  或者 docker import centos_container.tar centos:latest</p>
+<p>3.2  docker save -o 要保存的文件名  要保存的镜像名字</p>
 
                 
             </div>
@@ -959,7 +614,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wzh-login.github.io/2020/03/18/docker/">https://wzh-login.github.io/2020/03/18/docker/</a>
+                    <a href="https://wzh-login.github.io/2020/02/20/chi-xian-an-zhuang-shi-yong-docker/">https://wzh-login.github.io/2020/02/20/chi-xian-an-zhuang-shi-yong-docker/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -999,6 +654,10 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
                             
                                 <a href="/tags/docker/">
                                     <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -1314,13 +973,12 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/18/xiu-gai-npm-an-zhuang-de-quan-ju-lu-jing-he-pei-zhi-huan-jing-bian-liang-de-keng/">
+                <a href="/2020/03/18/docker/">
                     <div class="card-image">
                         
+                        <img src="https://gulimall-zss.oss-cn-qingdao.aliyuncs.com/%E8%87%AA%E8%A1%8C%E8%BD%A6.jpg" class="responsive-img" alt="docker">
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="修改npm安装的全局路径和配置环境变量的坑">
-                        
-                        <span class="card-title">修改npm安装的全局路径和配置环境变量的坑</span>
+                        <span class="card-title">docker</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1331,14 +989,14 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-18
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
                                 </a>
                             
                             
@@ -1348,8 +1006,8 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/npm/">
-                        <span class="chip bg-color">npm</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
@@ -1360,7 +1018,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/2020/02/20/chi-xian-an-zhuang-shi-yong-docker/">
@@ -1393,6 +1051,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;, &quot;&#x2F;app.jar&quot;]<span a
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
