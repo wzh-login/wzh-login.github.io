@@ -159,7 +159,7 @@
     };
     loaded();
 })()
- </script><meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+ </script><meta name="generator" content="Hexo 5.4.0"></head>
 
 
 
@@ -542,14 +542,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.5k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    21 分
                 </div>
                 
 
@@ -647,7 +647,39 @@
 		
 * IOC的核心思想：松耦合<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="2-1-1-Spring常用注解【重点】"><a href="#2-1-1-Spring常用注解【重点】" class="headerlink" title="2.1.1 Spring常用注解【重点】"></a>2.1.1 Spring常用注解【重点】</h2><p>Spring常用注解主要是替代<code>&lt;bean&gt;</code>的配置</p>
+<h3 id="2-2-1-IOC：控制反转"><a href="#2-2-1-IOC：控制反转" class="headerlink" title="2.2.1 IOC：控制反转"></a>2.2.1 IOC：控制反转</h3><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">- @Component：相当于 &lt;bean&gt;&lt;&#x2F;bean&gt;
 
+- @Repository：专门处理dao层，交给ioc容器
+
+- @Service：专门处理service层，交给ioc容器
+
+- @Controller：专门处理web层，交给ioc容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="①-注意：如果使用注解开发，必须开启注解组件扫描"><a href="#①-注意：如果使用注解开发，必须开启注解组件扫描" class="headerlink" title="① 注意：如果使用注解开发，必须开启注解组件扫描"></a>① 注意：如果使用注解开发，必须开启注解组件扫描</h4><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/context<span class="token punctuation">"</span></span>
+       <span class="token attr-name"><span class="token namespace">xmlns:</span>p</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/p<span class="token punctuation">"</span></span>
+       <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>
+       	http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+       	http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+    <span class="token comment">&lt;!--开启注解组件扫描--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cn.itcast<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    
+     <span class="token comment">&lt;!--将dao交给ioc
+    &lt;bean id="userDao" class="cn.itcast.dao.impl.UserDaoImpl">&lt;/bean>
+    --></span>
+
+    <span class="token comment">&lt;!--将service交给ioc
+    &lt;bean id="userService" class="cn.itcast.service.impl.UserServiceImpl">
+        &lt;property name="userDao" ref="userDao">&lt;/property>
+    &lt;/bean>
+    --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1620,7 +1652,7 @@ public class DynamicFactoryBean &#123;
         el: '#vcomments',
         appId: 'T0MVSXtbSVuGDS3nHfyhBaz6-gzGzoHsz',
         appKey: '2Jmxie3NaTCdff2f3XrzhFYf',
-        notify: 'false' === 'true',
+        notify: 'true' === 'true',
         verify: 'true' === 'true',
         visitor: 'true' === 'true',
         avatar: 'monsterid',
