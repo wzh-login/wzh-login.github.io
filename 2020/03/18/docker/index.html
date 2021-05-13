@@ -252,7 +252,7 @@
       
       <i class="fas fa-comments" style="zoom: 0.6;"></i>
       
-      <span>留言板</span>
+      <span>说说</span>
     </a>
     
   </li>
@@ -355,7 +355,7 @@
 			
 			    <i class="fa-fw fas fa-comments"></i>
 			
-			留言板
+			说说
 		</a>
           
         </li>
@@ -542,7 +542,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.5k
                 </div>
                 
 
@@ -675,6 +675,17 @@ docker run hell-world<span aria-hidden="true" class="line-numbers-rows"><span></
 </blockquote>
 <p><img src="/2020/03/18/docker/image-20210315135716768.png" alt="image-20210315135716768"></p>
 <p><img src="/2020/03/18/docker/image-20210312111712735.png" alt="image-20210312111712735"></p>
+<pre class="line-numbers language-none"><code class="language-none">inspect 容器ID				 	 #查看容器信息
+touch  文件名						#创建文件
+docker exec -it 容器名称 bash 		 #进入容器
+unzip -O GBK xxx.zip (用CP936, GB18030也可以)  #解压缩unzip
+查看docker可用容量		df -h &#x2F;var&#x2F;lib&#x2F;docker&#x2F;
+
+docker save -o 要保存的文件名  要保存的镜像名字
+docker load -i xxx.tar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h6 id="mysql挂载命令"><a href="#mysql挂载命令" class="headerlink" title="mysql挂载命令"></a>mysql挂载命令</h6><pre class="line-numbers language-none"><code class="language-none">docker run -p 3737:3306 -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql&#x2F;database:&#x2F;var&#x2F;lib&#x2F;mysql -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;my.cnf -v &#x2F;home&#x2F;guli&#x2F;resources&#x2F;mysql:&#x2F;docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD&#x3D;root  --name mysql_guli mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>帮助命令</p>

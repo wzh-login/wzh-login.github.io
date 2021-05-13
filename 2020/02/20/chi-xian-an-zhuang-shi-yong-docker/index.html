@@ -252,7 +252,7 @@
       
       <i class="fas fa-comments" style="zoom: 0.6;"></i>
       
-      <span>留言板</span>
+      <span>说说</span>
     </a>
     
   </li>
@@ -355,7 +355,7 @@
 			
 			    <i class="fa-fw fas fa-comments"></i>
 			
-			留言板
+			说说
 		</a>
           
         </li>
@@ -546,7 +546,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    356
+                    388
                 </div>
                 
 
@@ -588,6 +588,10 @@
 <p>2.2.将docker-compose-Linux-x86_64设置为可执行文件(chmod +x docker-compose-Linux-x86_64),在将docker-compose-Linux-x86_64 拷贝到linxu目录(cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose)</p>
 <h2 id="3-load-tar包为镜像执行compose命令"><a href="#3-load-tar包为镜像执行compose命令" class="headerlink" title="3.load tar包为镜像执行compose命令"></a>3.load tar包为镜像执行compose命令</h2><p>3.1 将tar包load成镜像 docker load -i eoms-state-grid.tar  或者 docker import centos_container.tar centos:latest</p>
 <p>3.2  docker save -o 要保存的文件名  要保存的镜像名字</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><pre class="line-numbers language-docker" data-language="docker"><code class="language-docker">打包镜像命令
+docker save -o 要保存的文件名.tar  要保存的镜像名字
+docker load -i xxx.tar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1024,9 +1028,9 @@
                 <a href="/2019/02/20/chu-shi-spring/">
                     <div class="card-image">
                         
-                        <img src="http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/4.jpg" class="responsive-img" alt="初识spring">
+                        <img src="http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/4.jpg" class="responsive-img" alt="spring的ioc">
                         
-                        <span class="card-title">初识spring</span>
+                        <span class="card-title">spring的ioc</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
