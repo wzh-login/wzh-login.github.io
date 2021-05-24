@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="easyexcel自动合并单元格handler填充导出策略, HTML,CSS,JavaScript,JQuery,React,Vue.js,JavaSE,JavaEE等">
+    <meta name="keywords" content="Bean深度拷贝工具, HTML,CSS,JavaScript,JQuery,React,Vue.js,JavaSE,JavaEE等">
     <meta name="description" content="专注于Java,分享知识,分享生活">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>easyexcel自动合并单元格handler填充导出策略 | July</title>
+    <title>Bean深度拷贝工具 | July</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -387,12 +387,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">easyexcel自动合并单元格handler填充导出策略</h1>
+                    <h1 class="description center-align post-title">Bean深度拷贝工具</h1>
                 </div>
             </div>
         </div>
@@ -508,8 +508,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/easyexcel/">
-                                <span class="chip bg-color">easyexcel</span>
+                            <a href="/tags/javaBean/">
+                                <span class="chip bg-color">javaBean</span>
                             </a>
                         
                     </div>
@@ -542,14 +542,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    124
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
 
@@ -572,174 +572,33 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="easyexcel自动合并单元格工具类"><a href="#easyexcel自动合并单元格工具类" class="headerlink" title="easyexcel自动合并单元格工具类"></a>easyexcel自动合并单元格工具类</h1><h3 id="1-先导入依赖"><a href="#1-先导入依赖" class="headerlink" title="1.先导入依赖"></a>1.先导入依赖</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&lt;!-- 阿里开源EXCEL --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
-    &lt;artifactId&gt;easyexcel&lt;&#x2F;artifactId&gt;
-    &lt;version&gt;2.2.4&lt;&#x2F;version&gt;
-&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <pre class="line-numbers language-java" data-language="java"><code class="language-java">import org.springframework.beans.BeanUtils;
 
-<h3 id="2-handler"><a href="#2-handler" class="headerlink" title="2.handler"></a>2.handler</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.jiantu.eoms.stategrid.handler;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.alibaba.excel.metadata.Head;
-import com.alibaba.excel.write.merge.AbstractMergeStrategy;
-import org.apache.commons.collections4.map.HashedMap;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.util.CellRangeAddress;
-
-import java.util.*;
-
-&#x2F;**
- * @author : wangzhongheng
- * @version V1.0
- * @Project: springcloud
- * @Package xtc.wzh.cloud.handler
- * @Description: TODO easyexcel  自动合并单元格策略
- * @date Date : 2021年5月19日 10:18
- *&#x2F;
-public class MergeStrategy extends AbstractMergeStrategy &#123;
-
-    &#x2F;&#x2F; 合并的列编号，从0开始，指定的index或自己按字段顺序数
-    private Set&lt;Integer&gt; mergeCellIndex &#x3D; new HashSet&lt;&gt;();
-
-    &#x2F;&#x2F; 数据集大小，用于区别结束行位置
-    private Integer maxRow &#x3D; 0;
-
-    &#x2F;&#x2F; 禁止无参声明
-    private MergeStrategy() &#123;
-    &#125;
-
-    public MergeStrategy(Integer maxRow, int... mergeCellIndex) &#123;
-        Arrays.stream(mergeCellIndex).forEach(item -&gt; &#123;
-            this.mergeCellIndex.add(item);
-        &#125;);
-        this.maxRow &#x3D; maxRow;
-    &#125;
-
-    &#x2F;&#x2F; 记录上一次合并的信息
-    private Map&lt;Integer, MergeRange&gt; lastRow &#x3D; new HashedMap();
-
-    &#x2F;&#x2F; 每行每列都会进入，绝对不要在这写循环
-    @Override
-    protected void merge(Sheet sheet, Cell cell, Head head, Integer relativeRowIndex) &#123;
-        &#x2F;&#x2F;设置以文本方式
-        &#x2F;&#x2F;cell.setCellType(Cell.CELL_TYPE_STRING);  过时方法
-        cell.setCellType(CellType.STRING);
-
-        int currentCellIndex &#x3D; cell.getColumnIndex();
-        &#x2F;&#x2F; 判断该行是否需要合并
-        if (mergeCellIndex.contains(currentCellIndex)) &#123;
-            String currentCellValue &#x3D; cell.getStringCellValue();
-            int currentRowIndex &#x3D; cell.getRowIndex();
-            if (!lastRow.containsKey(currentCellIndex)) &#123;
-                &#x2F;&#x2F; 记录首行起始位置
-                lastRow.put(currentCellIndex, new MergeRange(currentCellValue, currentRowIndex, currentRowIndex, currentCellIndex, currentCellIndex));
-                return;
-            &#125;
-            &#x2F;&#x2F;有上行这列的值了，拿来对比.
-            MergeRange mergeRange &#x3D; lastRow.get(currentCellIndex);
-            if (!(mergeRange.lastValue !&#x3D; null &amp;&amp; mergeRange.lastValue.equals(currentCellValue))) &#123;
-                &#x2F;&#x2F; 结束的位置触发下合并.
-                &#x2F;&#x2F; 同行同列不能合并，会抛异常
-                if (mergeRange.startRow !&#x3D; mergeRange.endRow || mergeRange.startCell !&#x3D; mergeRange.endCell) &#123;
-                    sheet.addMergedRegionUnsafe(new CellRangeAddress(mergeRange.startRow, mergeRange.endRow, mergeRange.startCell, mergeRange.endCell));
-                &#125;
-                &#x2F;&#x2F; 更新当前列起始位置
-                lastRow.put(currentCellIndex, new MergeRange(currentCellValue, currentRowIndex, currentRowIndex, currentCellIndex, currentCellIndex));
-            &#125;
-            &#x2F;&#x2F; 合并行 + 1
-            mergeRange.endRow +&#x3D; 1;
-            &#x2F;&#x2F; 结束的位置触发下最后一次没完成的合并
-            if (relativeRowIndex.equals(maxRow - 1)) &#123;
-                MergeRange lastMergeRange &#x3D; lastRow.get(currentCellIndex);
-                &#x2F;&#x2F; 同行同列不能合并，会抛异常
-                if (lastMergeRange.startRow !&#x3D; lastMergeRange.endRow || lastMergeRange.startCell !&#x3D; lastMergeRange.endCell) &#123;
-                    sheet.addMergedRegionUnsafe(new CellRangeAddress(lastMergeRange.startRow, lastMergeRange.endRow, lastMergeRange.startCell, lastMergeRange.endCell));
-                &#125;
-            &#125;
+public class BeanDeepUtil &#123;
+    &#x2F;**
+     * 拷贝列表属性对象
+     *
+     * @param sources 原对象列表
+     * @param clazz   目标对象类型
+     * @param &lt;T&gt;     目标对象泛型
+     * @return 目标对象列表
+     * @throws Exception 目标对象实例化异常
+     *&#x2F;
+    public static &lt;T&gt; List&lt;T&gt; copyListProperties(List&lt;?&gt; sources, Class&lt;T&gt; clazz) throws Exception &#123;
+        List&lt;T&gt; targets &#x3D; new ArrayList&lt;&gt;();
+        for (Object source : sources) &#123;
+            T instance &#x3D; clazz.newInstance();
+            BeanUtils.copyProperties(source, instance);
+            targets.add(instance);
         &#125;
+        return targets;
     &#125;
+
 &#125;
-
-class MergeRange &#123;
-    public int startRow;
-    public int endRow;
-    public int startCell;
-    public int endCell;
-    public String lastValue;
-
-    public MergeRange(String lastValue, int startRow, int endRow, int startCell, int endCell) &#123;
-        this.startRow &#x3D; startRow;
-        this.endRow &#x3D; endRow;
-        this.startCell &#x3D; startCell;
-        this.endCell &#x3D; endCell;
-        this.lastValue &#x3D; lastValue;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-控制器-填充导出策略"><a href="#3-控制器-填充导出策略" class="headerlink" title="3.控制器 填充导出策略"></a>3.控制器 填充导出策略</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
-	 * web报表导出接口
-	 * @param response
-	 * @param year	年度
-	 * @param code	类型
-	 *&#x2F;
-	@GetMapping(&quot;&#x2F;download&quot;)
-	public void downloadReportData(HttpServletResponse response)&#123;
-		List&lt;ReportFormVO&gt; xmglXiadEntities &#x3D; fDZYEstateService.queryReportInformation();
-
-		&#x2F;&#x2F;此处getResourceAsStream 用于获取服务器打包后的Excel模板文件流;
-		InputStream resourceAsStream &#x3D; this.getClass().getClassLoader().getResourceAsStream(&quot;templates&#x2F;form&#x2F;fill_data_template.xlsx&quot;);
-		&#x2F;&#x2F;文件名
-		String dynamicName &#x3D; &quot;导出填充策略&quot;;
-		&#x2F;&#x2F;需要合并的列
-		int[] mergeColumeIndex &#x3D; &#123;0,1,2,3,4,5&#125;;
-
-		try &#123;
-
-			&#x2F;&#x2F;String path &#x3D; this.getClass().getClassLoader().getResource(&quot;templates&#x2F;XXXX.xlsx&quot;).getPath();
-			&#x2F;&#x2F;读取Excel 根据指定模板导出
-			ExcelWriter excelWriter &#x3D; EasyExcel.write(ExcelUtils.getOutputStream(dynamicName, response))
-					.withTemplate(resourceAsStream)
-					.build();
-			&#x2F;&#x2F;ExcelWriter excelWriter &#x3D; EasyExcel.write(ExcelUtils.getOutputStream(&quot;XXXX&quot;,httpServletResponse)).withTemplate(path).build();
-
-			WriteSheet writeSheet &#x3D; EasyExcel.writerSheet()
-					&#x2F;&#x2F;.registerWriteHandler(new ExcelFillCellMergeStrategy(mergeRowIndex, mergeColumeIndex))
-					.registerWriteHandler(new MergeStrategy(xmglXiadEntities.size(),mergeColumeIndex))
-					.build();
-			&#x2F;&#x2F;直接写入Excel数据(list是我查询并需导出的数据，并且里面的字段和excel需要导出的字段对应)
-			excelWriter.fill(xmglXiadEntities, writeSheet);
-			excelWriter.finish();
-		&#125; catch (Exception e) &#123;
-			log.error(&quot;下载报表异常：&#123;&#125;&quot;, e.getMessage());
-			throw new RuntimeException(&quot;下载报表异常&quot;);
-		&#125;
-	&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="4-工具类"><a href="#4-工具类" class="headerlink" title="4.工具类"></a>4.工具类</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">import lombok.extern.slf4j.Slf4j;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.OutputStream;
-import java.net.URLEncoder;
-
-@Slf4j
-public class ExcelUtils &#123;
-    &#x2F;&#x2F;此段代码是工具类ExcelUtils中的 用于输出Excel流
-    public static OutputStream getOutputStream(String fileName, HttpServletResponse response) throws Exception &#123;
-
-            fileName &#x3D; URLEncoder.encode(fileName, &quot;UTF-8&quot;);
-            response.setContentType(&quot;application&#x2F;vnd.ms-excel&quot;);
-            response.setCharacterEncoding(&quot;utf8&quot;);
-            response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename&#x3D;&quot; + fileName + &quot;.xls&quot;);
-            response.setHeader(&quot;Pragma&quot;, &quot;public&quot;);
-            response.setHeader(&quot;Cache-Control&quot;, &quot;no-store&quot;);
-            response.addHeader(&quot;Cache-Control&quot;, &quot;max-age&#x3D;0&quot;);
-            return response.getOutputStream();
-
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -767,7 +626,7 @@ public class ExcelUtils &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wzh-login.github.io/2021/05/24/easyexcel-zi-dong-he-bing-dan-yuan-ge-gong-ju-lei/">https://wzh-login.github.io/2021/05/24/easyexcel-zi-dong-he-bing-dan-yuan-ge-gong-ju-lei/</a>
+                    <a href="https://wzh-login.github.io/2021/05/24/bean-shen-du-kao-bei-gong-ju/">https://wzh-login.github.io/2021/05/24/bean-shen-du-kao-bei-gong-ju/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -805,8 +664,8 @@ public class ExcelUtils &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/easyexcel/">
-                                    <span class="chip bg-color">easyexcel</span>
+                                <a href="/tags/javaBean/">
+                                    <span class="chip bg-color">javaBean</span>
                                 </a>
                             
                         </div>
@@ -1118,10 +977,9 @@ public class ExcelUtils &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/05/24/easyexcel-zi-dong-he-bing-dan-yuan-ge-gong-ju-lei/">
                     <div class="card-image">
@@ -1138,9 +996,9 @@ public class ExcelUtils &#123;
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1153,7 +1011,6 @@ public class ExcelUtils &#123;
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1172,12 +1029,12 @@ public class ExcelUtils &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/24/bean-shen-du-kao-bei-gong-ju/">
+                <a href="/2020/04/20/linux-an-zhuang-mysql-pei-zhi/">
                     <div class="card-image">
                         
-                        <img src="http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/7.jpg" class="responsive-img" alt="Bean深度拷贝工具">
+                        <img src="http://july-blog.oss-cn-qingdao.aliyuncs.com/blog/article/1.jpg" class="responsive-img" alt="linux安装mysql配置">
                         
-                        <span class="card-title">Bean深度拷贝工具</span>
+                        <span class="card-title">linux安装mysql配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1188,14 +1045,14 @@ public class ExcelUtils &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="post-category">
-                                    工具类
+                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    运维
                                 </a>
                             
                             
@@ -1205,8 +1062,12 @@ public class ExcelUtils &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/javaBean/">
-                        <span class="chip bg-color">javaBean</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
